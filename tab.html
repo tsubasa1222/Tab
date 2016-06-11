@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+<style>
+.Tab{
+display:table;
+margin:0;
+padding:0;
+width:300px;
+}
+.Tab li{
+display:table-cell;
+border:1px solid #aaa;
+border-bottom: none;
+padding:0 10px;
+font-size:10px;
+}
+.Tab li.active{
+background:blue;
+color:#fff;
+}
+.Tab__content{
+border:1px solid #aaa;
+border-top: none;
+width:300px;
+}
+</style>
+
+<ul class="Tab">
+  <li class="Tab_1 active">タブ1</li>
+  <li class="Tab_2">タブ2</li>
+  <li class="Tab_3">タブ3</li>
+  <li class="Tab_4">タブ4</li>
+</ul>
+
+<div class="Tab__content Tab__content--1">これはタブコンテンツ1これはタブコンテンツ1</div>
+<div class="Tab__content Tab__content--2">これはタブコンテンツ2これはタブコンテンツ2</div>
+<div class="Tab__content Tab__content--3">これはタブコンテンツ3これはタブコンテンツ3</div>
+<div class="Tab__content Tab__content--4">これはタブコンテンツ4これはタブコンテンツ4</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+$(function(){
+
+	// // .active以外非表示にする
+ //    // $('div:not(.active)').hide();
+ //    $('.Tab__content--2').hide();
+ //    $('.Tab__content--3').hide();
+ //    $('.Tab__content--4').hide();
+ //  // "タブ1"をクリックしたら、"タブコンテンツ1"を表示する
+ //    $('.Tab_1').on('click', function(){
+ //      $('.Tab__content--1').show();
+ //      $('.Tab__content--2').hide();
+ //      $('.Tab__content--3').hide();
+ //      $('.Tab__content--4').hide();
+ //      $('.Tab_1').addClass('active');
+ //      $('.Tab_2').removeClass('active');
+ //      $('.Tab_3').removeClass('active');
+ //      $('.Tab_4').removeClass('active');
+ //      });
+
+
+ //  // "タブ2"をクリックしたら、"タブコンテンツ2"を表示する
+ //      $('.Tab_2').on('click', function(){
+ //      $('.Tab__content--1').hide();
+ //      $('.Tab__content--2').show();
+ //      $('.Tab__content--3').hide();
+ //      $('.Tab__content--4').hide();
+ //      $('.Tab_1').removeClass('active');
+ //      $('.Tab_2').addClass('active');
+ //      $('.Tab_3').removeClass('active');
+ //      $('.Tab_4').removeClass('active');
+ //      });
+ //   // "タブ3"をクリックしたら、"タブコンテンツ3"を表示する
+ //      $('.Tab_3').on('click', function(){
+ //      $('.Tab__content--1').hide();
+ //      $('.Tab__content--2').hide();
+ //      $('.Tab__content--3').show();
+ //      $('.Tab__content--4').hide();
+ //      $('.Tab_1').removeClass('active');
+ //      $('.Tab_2').removeClass('active');
+ //      $('.Tab_3').addClass('active');
+ //      $('.Tab_4').removeClass('active');
+ //      });
+ //  // "タブ4"をクリックしたら、"タブコンテンツ4"を表示する
+ //      $('.Tab_4').on('click', function(){
+ //      $('.Tab__content--1').hide();
+ //      $('.Tab__content--2').hide();
+ //      $('.Tab__content--3').hide();
+ //      $('.Tab__content--4').show();
+ //      $('.Tab_1').removeClass('active');
+ //      $('.Tab_2').removeClass('active');
+ //      $('.Tab_3').removeClass('active');
+ //      $('.Tab_4').addClass('active');
+ //      });
+
+// .active以外非表示にする
+ var tabs = $('ul.Tab').find('li');
+ var tabContent = $('.Tab__content');
+
+$('.Tab').each(function(){
+  var activeTabNumber =  $('.active') .index();
+  console.log(tabContent.get(activeTabNumber));
+  tabContent.not(tabContent.get(activeTabNumber)).hide();
+})
+
+
+// タブnをクリックしたら"タブコンテンツn"を表示する
+tabs.on('click',function(){
+  var number = tabs.index(this);
+  console.log(this,number);
+// .activeを付ける、外す
+  $(tabs.get(number)).addClass('active');
+  tabs.not(tabs.get(number)).removeClass('active');
+// コンテンツを表示、非表示
+  $(tabContent.get(number)).show();
+  tabContent.not(tabContent.get(number)).hide();
+})
+  });
+</script>
+
+</body>
+</html>
